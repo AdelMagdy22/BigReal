@@ -1,26 +1,31 @@
 #ifndef BigRealClass_H
 #define BigRealClass_H
 
-#include "BigDecimalInt.h"
+#include "BigDecimalIntClass.h"
 
 
-class BigReal{
+class BigReal
+{ 
 private:
-    string wholeNum;
-    long long decPointPos; // position of Decimal Point
-    char sign;
-    void setNumber(string num);
+    BigDecimalInt wholeNum;
+    int decPointPosFromEnd; // position of Decimal Point
     bool checkValidInputRealNum(string input);
 
 public:
-    BigReal(){};
+    BigReal():decPointPosFromEnd(1)
+    {wholeNum.setNumber("0.0");};
 
+    void assNumber(string num);
     BigReal(string realNumber)
     {
-        setNumber(realNumber);
+        assNumber(realNumber);
     };
 
-    BigReal(BigDecimalInt bigInt);
+    //BigReal(BigDecimalInt bigInt);
+
+    BigReal (const BigReal& other); // copy constructor
+
+    BigReal (BigReal&& other); // move constructor
 };
 
 #endif
