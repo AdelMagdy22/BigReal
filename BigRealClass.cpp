@@ -7,31 +7,34 @@ bool BigReal :: checkValidInputRealNum(string input)
     
 }
 
-void BigReal :: setNumber(string num)
+void BigReal :: assNumber(string num)
 {
-    bool ValidNumber = checkValidInputRealNum(num);
-    if(ValidNumber)
+    int pos;
+    bool ValidRealNumber = checkValidInputRealNum(num);
+    if(ValidRealNumber)
     {
-        if(num[0] == '+')
-        {
-            sign = '+';
-            num.erase(0,1);
-        }
-        else if(num[0] == '-')
-        {
-            sign = '+';
-            num.erase(0,1);
-        }
-        else 
-        {
-            sign = '+';
-        }
-        decPointPos = num.find(".");
-        wholeNum = num;
-        cout<<sign<<num<<endl;
-        cout<<wholeNum<<endl;
+        pos = num.find(".",1);
+        cout<<"decPointPos: "<< pos<<endl;
+        decPointPosFromEnd = num.length() - pos;
+        cout<<"decPointPosFromEnd: "<< decPointPosFromEnd<<endl;
+        num.erase(pos, 1);
+        wholeNum.setNumber(num);
+        cout<<wholeNum.sign()<<wholeNum.getNumber()<<endl;
+
     }else
     {
-        cout<<"Not Valid input"<<endl;
+        cout<<"Invalid"<<"\n";
+        exit(1);
     }    
 }
+BigReal :: BigReal(const BigReal& other)
+{
+    wholeNum = other.wholeNum;
+    decPointPosFromEnd = other.decPointPosFromEnd;
+} 
+/*
+BigReal :: BigReal(BigReal&& other)
+{
+    wholeNum = other.wholeNum;
+    // other.wholeNum = nullptr;
+}*/
