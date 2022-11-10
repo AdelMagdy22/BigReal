@@ -8,12 +8,12 @@ class BigReal
 { 
 private:
     BigDecimalInt wholeNum;
-    int decPointPosFromEnd; // position of Decimal Point
+    int decPointPos; // position of Decimal Point
     bool checkValidInputRealNum(string input);
 
 public:
-    BigReal():decPointPosFromEnd(1)
-    {wholeNum.setNumber("0.0");};
+    BigReal():decPointPos(1)
+    {wholeNum.setNumber("000");};
 
     void assNumber(string num);
     BigReal(string realNumber)
@@ -21,11 +21,25 @@ public:
         assNumber(realNumber);
     };
 
-    //BigReal(BigDecimalInt bigInt);
+    string returnNumber()
+    {
+        return wholeNum.getNumber();
+    }
+    int getDecPointPos()
+    {
+        return decPointPos;
+    }
+
+
+    BigReal(BigDecimalInt bigInt);
 
     BigReal (const BigReal& other); // copy constructor
 
+    BigReal& operator= ( BigReal& other); // Assignment operator
+
     BigReal (BigReal&& other); // move constructor
+
+    BigReal& operator= (BigReal&& other); // move Assignment
 };
 
 #endif
