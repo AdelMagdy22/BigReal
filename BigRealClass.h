@@ -53,6 +53,10 @@ public:
     BigReal (BigReal&& other); // move constructor
 
     BigReal& operator= (BigReal&& other); // move Assignment
+    
+    int GetSize();
+    
+    char GetSign();
 };
 
 #endif
