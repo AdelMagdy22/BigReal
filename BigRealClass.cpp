@@ -87,3 +87,21 @@ BigReal& BigReal:: operator = (BigReal&& other)
 
     return *this;
 }
+int BigReal :: GetSize()
+{
+   string a=wholeNum.getNumber();
+   
+   for(int i=0;i<wholeNum.size();i++){
+        if(a [i]=='.'){
+            return (wholeNum.size()-1);
+        }
+    }
+    return wholeNum.size();
+    
+}
+
+char BigReal :: GetSign()
+{
+    return wholeNum.sign();
+   
+}
