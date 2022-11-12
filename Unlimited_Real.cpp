@@ -16,9 +16,11 @@ and we use BigDecimalIntClass that BGad do it.
 // #include "BigDecimalIntClass.h"
 #include "BigRealClass.cpp"
 #include "BigDecimalIntClass.cpp"
+using namespace std;
 
 int main()
 {
+    /*
     BigDecimalInt o3("65");
     string s1 = "+50.65";
     BigReal o1(s1), o2("+52.40");
@@ -26,14 +28,14 @@ int main()
 
     cout<<"\no5: "<<o5.returnNumber()<<endl;
     cout<<"o5 decPointPos: "<<o5.getDecPointPos()<<endl; //65.00
-    
+
     cout<<"\n 50.65 + 52.40 = ";
 
     string re = addition(o1.returnNumber(),o2.returnNumber());
 
     for (long long i = 0; i < re.length(); i++)
     {
-        int resDecPointPos; 
+        int resDecPointPos;
         resDecPointPos = max(o1.getDecPointPos(), o2.getDecPointPos()) + (re.length() - max(o1.returnNumber().length(), o2.returnNumber().length() ));
         if (i == resDecPointPos)
         {
@@ -41,13 +43,13 @@ int main()
             cout<<re[i];
         }
         else cout<<re[i];
-    }    
+    }
     cout<<endl;
 
     BigReal o6(move(o4));
 
 
-    
+
     cout<<o6.returnNumber()<<" DecPointPos: "<<o6.getDecPointPos()<<endl;
     cout<<o4.returnNumber()<<" DecPointPos: "<<o4.getDecPointPos()<<endl;
 
@@ -58,5 +60,23 @@ int main()
 
     o1 = o8;
     cout<<'\n'<<"o1: "<<o1.returnNumber()<<endl;
-    cout<<'\n'<<"o7: "<<o7.returnNumber()<<endl;  
+    cout<<'\n'<<"o7: "<<o7.returnNumber()<<endl;*/
+
+    BigReal oo("22.550");
+    BigReal ooo("+522.50");
+    // cout << "enter the num: ";
+  //  cin >> ooo;
+    // cin.ignore();
+    
+    cout<<'\n'<<"o1: "<<oo.GetSign()<<endl;
+    cout<<'\n'<<"o1: "<<oo.GetSize()<<endl;
+    cout<< "ooo: "<<ooo <<endl;
+    cout<<"oo: ";
+    cout << oo << endl;
+    if(oo==ooo){cout<<"yes"<<endl;}
+    else{cout<<"no"<<endl;}
+
+    ooo.AddZeros(oo);
+    cout<<" ooo: "<<ooo<<" oo: "<<oo;
+     
 }
