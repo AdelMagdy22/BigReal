@@ -78,5 +78,5 @@ int main()
 
     ooo.AddZeros(oo);
     cout<<" ooo: "<<ooo<<" oo: "<<oo;
-     
+    
 }
