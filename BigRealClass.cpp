@@ -198,5 +198,3 @@ void BigReal:: AddZeros(BigReal &num1)
     num1.wholeNum.setNumber(cmp1);
     
 }
-
-
