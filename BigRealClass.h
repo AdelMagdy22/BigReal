@@ -17,13 +17,13 @@ and we use BigDecimalIntClass that BGad do it.
 
 #include "BigDecimalIntClass.h"
 
-class BigReal //: public BigDecimalInt
+class BigReal
 {
 private:
     BigDecimalInt wholeNum;
-    int decPointPos; // position of Decimal Point
+    long long decPointPos; // position of Decimal Point
     bool checkValidInputRealNum(string input);
-    //char signNumber;
+    char SignofWholeNum;
 
 public:
     BigReal():decPointPos(1)
@@ -39,11 +39,21 @@ public:
     {
         return wholeNum.getNumber();
     }
+
+    void setDecPointPos(long long n)
+    {
+        decPointPos = n;
+    }
+
     int getDecPointPos()
     {
         return decPointPos;
     }
 
+    void setSign(char s)
+    {
+        SignofWholeNum = s;
+    } 
 
     BigReal(BigDecimalInt bigInt);
 
@@ -55,14 +65,15 @@ public:
     BigReal (BigReal&& other); // move constructor
 
     BigReal& operator= (BigReal&& other); // move Assignment
-    BigReal& operator+ (BigReal other);
+    BigReal operator + (BigReal& other);
     int GetSize();
 
     char GetSign();
     friend ostream &operator << (ostream & out, BigReal num);
     friend istream &operator >> (istream & In, BigReal& num);
     bool operator == (BigReal anotherReal);
-   // bool operator >  (BigReal anotherReal);
+    bool operator >  (BigReal anotherReal);
+    bool operator <  (BigReal anotherReal);
 };
 
 #endif
