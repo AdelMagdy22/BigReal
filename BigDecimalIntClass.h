@@ -14,8 +14,7 @@ such as: +, -, <, and >.
 #define BIGDECIMALINT_BIGDECIMALINTCLASS_H
 
 #include <iostream>
-#include <deque>
-#include <regex>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -35,7 +34,7 @@ public:
     friend ostream &operator << (ostream &out, BigDecimalInt num);
     int size();
     char sign();
-    virtual void setNumber(string num);
+    void setNumber(string num);
     string getNumber(){
         return number;
     }
@@ -48,5 +47,8 @@ public:
     }
 
 };
+
+string addition(string num1,string num2);
+string subtraction(string num1,string num2);
 
 #endif //BIGDECIMALINT_BIGDECIMALINTCLASS_H
