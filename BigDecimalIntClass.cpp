@@ -171,31 +171,66 @@ string addition(string num1,string num2)
     }
     return res;
 }
-
-//subtraction implementation
-string subtraction(string num1,string num2){
-    deque<long long>d;
-    string res;
-
-    for (long long i = num1.length() - 1; i >= 0; i--)
+ subtraction implementation
+string subtraction(string num1, string num2)
+{
+    string res = "";
+    string temp = "";
+    if (num1.length() == num2.length())
     {
-        if (num1[i] < num2[i])
-        {
-            num1[i] = char (((num1[i] - '0') + 10) + '0');
-            num1[i - 1] = char (((num1[i - 1] - '0') - 1) + '0');
-            d.push_front((num1[i] - '0') - (num2[i] - '0'));
-        }
-        else
-        {
-            d.push_front((num1[i] - '0') - (num2[i] - '0'));
-        }
-    }
 
-    for (auto i : d)
-    {
-        res += to_string(i);
+        for (int i = 0; i < num1.length(); i++)
+        {
+            if (num1[i] < num2[i])
+            {
+                swap(num1, num2);
+                break;
+            }
+        }
+        int carry = 0;
+        for (int i = num1.length() - 1; i >= 0; i--)
+        {
+            res += (char)((int)num1[i] - (int)num2[i] + 48 - carry);
+            if (res[i] < '0')
+            {
+                carry = 1;
+                res[i] = (char)((int)res[i] - 48 + 10);
+            }
+            else
+                carry = 0;
+        }
+        for (int i = res.length() - 1; i >= 0; i--)
+        {
+            temp += res[i];
+        }
+        
+        return temp;
     }
-    return res;
+    int count = 1;
+    for (int i = num1.length() - 1; i >= 0; i--)
+    {
+        if (num1[i] < num2[i] && num1[i - 1] != '0')
+        {
+            num1[i] = (char)((int)num1[i] - 48 + 10);
+            num1[i - 1] = (char)((int)num1[i] - 48 - 1);
+        }
+        else if (num1[i] < num2[i] && num1[i - 1] == '0')
+        {
+            while ((num1[i - count] == 0))
+            {
+                num1[i - count] = (char)((int)num1[i - count] + 9 - 48);
+                count++;
+            }
+            num1[i - count] = (char)((int)num1[i] + 48 - 1);
+        }
+        res += (char)((int)num1[i] - (int)num2[i] + 48);
+    }
+    for (int i = res.length(); i >= 0; i--)
+    {
+        temp += res[i];
+    }
+    
+    return temp;
 }
 
 // // operator + overloading function.
