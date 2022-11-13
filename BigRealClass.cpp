@@ -12,6 +12,7 @@ diffrent things such as: Copy Constructor, move constructor, Assignment operator
 and we use BigDecimalIntClass that BGad do it.
  */
 #include "BigRealClass.h"
+#include "BigDecimalIntClass.h"
 
 bool BigReal :: checkValidInputRealNum(string input)
 {
@@ -28,13 +29,19 @@ void BigReal :: assNumber(string num)
     {
         pos = num.find(".",0);
 
-        if(num[0] == '+' || num[0] == '-') decPointPos = pos - 1;
-        else decPointPos = pos;
-        cout<<"\n"<<"decPointPos: "<< decPointPos<<endl;
+        if(num[0] == '+' || num[0] == '-') 
+        {
+            decPointPos = pos - 1;
+            SignofWholeNum = num[0];
+        }
+        else 
+        {
+            decPointPos = pos;
+            SignofWholeNum = '+';
+        }
+        
         num.erase(pos, 1);
         wholeNum.setNumber(num);
-        cout<<wholeNum.sign()<<wholeNum.getNumber()<<endl;
-
     }else
     {
         cout<<"Invalid"<<"\n";
@@ -102,23 +109,22 @@ int BigReal :: GetSize()
 
 char BigReal :: GetSign()
 {
-    return wholeNum.sign();
+    return SignofWholeNum;
    
 }
 
 ostream &operator << (ostream &out, BigReal num)
 {
-    string w= num.wholeNum.getNumber();
-    int b=num.getDecPointPos();
-    if(num.wholeNum.sign() == '-'){cout<< num.wholeNum.sign();}
-    for(int i=0;i<num.wholeNum.size();i++)
+    string w = num.wholeNum.getNumber();
+    long long d;
+    d = num.getDecPointPos();
+    if(num.GetSign() == '-'){cout<< num.GetSign();}
+    for(long long i=0;i<num.GetSize();i++)
     {
-        if(i==b){out<<'.';}
+        if( i == d) out<<'.';
         out<<w[i];
     }
-    
-    //out << num.wholeNum;
-    
+
     return out;
 }
 
@@ -133,19 +139,59 @@ istream &operator >>(istream & in, BigReal&  num)
 
 bool BigReal:: operator == (BigReal anotherReal)
 {
-    if(GetSign()==anotherReal.GetSign()){
-        if(wholeNum.getNumber()== anotherReal.returnNumber()){
-            if(getDecPointPos() == anotherReal.getDecPointPos()){
-                return true;
-            }
-        }
-    }
+    AddZeros(anotherReal);
+    if(GetSign()==anotherReal.GetSign())
+        if(wholeNum.getNumber()== anotherReal.returnNumber()) return true;
+    
     return false;
 
 }
-/*
-bool  BigReal:: operator >(BigReal anotherReal)
-{}*/
+
+bool  BigReal:: operator > (BigReal anotherReal)
+{
+    AddZeros(anotherReal);
+    string a = wholeNum.getNumber();
+    string b = anotherReal.returnNumber();
+    if(GetSign()=='-'&&anotherReal.GetSign()=='+')
+    {
+        return false;
+    }
+    else if(GetSign()=='+'&&anotherReal.GetSign()=='-')
+    {
+        return true;
+    }
+    else if(GetSign()=='+'&&anotherReal.GetSign()=='+')
+    {
+        return a>b;
+    }
+    else if(GetSign()=='-'&&anotherReal.GetSign()=='-')
+    {
+        return b>a;
+    }
+}
+
+bool  BigReal:: operator < (BigReal anotherReal)
+{
+    AddZeros(anotherReal);
+    string a = wholeNum.getNumber();
+    string b = anotherReal.returnNumber();
+    if(GetSign()=='-'&&anotherReal.GetSign()=='+')
+    {
+        return true;
+    }
+    else if(GetSign()=='+'&&anotherReal.GetSign()=='-')
+    {
+        return false;
+    }
+    else if(GetSign()=='+'&&anotherReal.GetSign()=='+')
+    {
+        return a<b;
+    }
+    else if(GetSign()=='-'&&anotherReal.GetSign()=='-')
+    {
+        return b<a;
+    }
+}
 
 void BigReal:: AddZeros(BigReal &num1) 
 {   
@@ -174,9 +220,7 @@ void BigReal:: AddZeros(BigReal &num1)
     }
     cmp1 += num1.returnNumber();
     cmp += wholeNum.getNumber();
-    // wholeNum.setNumber(cmp);
-    // num1.aasNumber(cmp1);
-    
+
     if(afDecPos1 > afDecPos)
     {
         
@@ -184,7 +228,6 @@ void BigReal:: AddZeros(BigReal &num1)
         {
             cmp += '0';
         }
-        // wholeNum.setNumber(cmp);
     }
     else if (afDecPos1 < afDecPos)
     {
@@ -192,9 +235,44 @@ void BigReal:: AddZeros(BigReal &num1)
         {
             cmp1 += '0';
         }
-        // num1.assNumber(cmp1);
     }
     wholeNum.setNumber(cmp);
     num1.wholeNum.setNumber(cmp1);
     
+}
+
+BigReal BigReal:: operator +(BigReal& other)
+{
+    AddZeros(other);
+    string n1 = returnNumber(), n2 = other.returnNumber();
+    char sign1 = GetSign() , sign2 = other.GetSign();
+    BigReal res;
+    string r = "";
+    if((sign1 == '+' && sign2 == '+') || ( sign1 == '-' && sign2 == '-') )
+    {
+        res.setSign(sign1);
+        r = addition(returnNumber(), other.returnNumber());
+    }
+    else if ( (sign1== '+' && sign2 == '-' ) || (sign1 == '-' && sign2 == '+' ) )
+    {
+        r = subtraction(returnNumber(), other.returnNumber());
+        if(n1 > n2)
+        {
+            res.setSign(sign1);
+        }
+        else if (n2 > n1)
+        {
+            res.setSign(sign2);
+        }
+        else if (n1 == n2)
+        {
+            res.assNumber("0.0");
+            return res;
+        }
+    }
+    res.wholeNum.setNumber(r);
+    long long resDecPointPos;
+    resDecPointPos = getDecPointPos() + (res.GetSize() - GetSize());
+    res.setDecPointPos(resDecPointPos);
+    return res;
 }
