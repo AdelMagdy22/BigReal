@@ -20,22 +20,25 @@ using namespace std;
 
 int main()
 {
-    /*
-    BigDecimalInt o3("65");
-    string s1 = "+50.65";
-    BigReal o1(s1), o2("+52.40");
-    BigReal o5(o3), o4("55.00");
+    
+    // BigDecimalInt o3("65");
+    string s1 = "500", s2 = "450";
+    BigReal o1("+50.5"), o2("-53.5");
+    // BigReal o5(o3), o4("55.00");
+    cout<<subtraction(s1,s2)<<endl;
+    // cout<<"\no5: "<<o5.returnNumber()<<endl;
+    // cout<<"o5 decPointPos: "<<o5.getDecPointPos()<<endl; //65.00
+    
+    // cout<<o1.GetSign();//<<" "<<o2<<endl;
+    cout<<"\n 50.5 + (-53.5) = ";
+    cout<< o1 + o2<<endl;
+    //cout<<o1<<" "<<o2;
 
-    cout<<"\no5: "<<o5.returnNumber()<<endl;
-    cout<<"o5 decPointPos: "<<o5.getDecPointPos()<<endl; //65.00
-
-    cout<<"\n 50.65 + 52.40 = ";
-
-    string re = addition(o1.returnNumber(),o2.returnNumber());
+/*    string re = addition(o1.returnNumber(),o2.returnNumber());
 
     for (long long i = 0; i < re.length(); i++)
     {
-        int resDecPointPos;
+        long resDecPointPos;
         resDecPointPos = max(o1.getDecPointPos(), o2.getDecPointPos()) + (re.length() - max(o1.returnNumber().length(), o2.returnNumber().length() ));
         if (i == resDecPointPos)
         {
@@ -62,21 +65,24 @@ int main()
     cout<<'\n'<<"o1: "<<o1.returnNumber()<<endl;
     cout<<'\n'<<"o7: "<<o7.returnNumber()<<endl;*/
 
-    BigReal oo("22.550");
-    BigReal ooo("+522.50");
+    // BigReal oo("522.500");
+    // BigReal ooo("522.50");
     // cout << "enter the num: ";
   //  cin >> ooo;
     // cin.ignore();
     
-    cout<<'\n'<<"o1: "<<oo.GetSign()<<endl;
-    cout<<'\n'<<"o1: "<<oo.GetSize()<<endl;
-    cout<< "ooo: "<<ooo <<endl;
-    cout<<"oo: ";
-    cout << oo << endl;
-    if(oo==ooo){cout<<"yes"<<endl;}
-    else{cout<<"no"<<endl;}
-
-    ooo.AddZeros(oo);
-    cout<<" ooo: "<<ooo<<" oo: "<<oo;
-    
+//    cout<<'\n'<<"o1: "<<oo.GetSign()<<endl;
+    //cout<<'\n'<<"o1: "<<oo.GetSize()<<endl;
+   // cout<< "ooo: "<<ooo <<endl;
+   // cout<<"oo: ";
+    //cout << oo << endl;
+    // if(oo==ooo){cout<<"yes"<<endl;}
+    // else{cout<<"no"<<endl;}
+    // (oo<ooo)? cout<<"oo>ooo"<<endl:cout<<"";
+    // (ooo>oo)? cout<<"ooo<oo"<<endl:cout<<"";
+    // cout<<"oo>ooo: "<<oo>ooo;
+    // cout<<"oo<ooo: "<< oo<ooo:
+   // ooo.AddZeros(oo);
+    //cout<<" ooo: "<<ooo<<" oo: "<<oo;
+     
 }
