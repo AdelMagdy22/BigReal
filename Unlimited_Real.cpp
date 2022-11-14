@@ -22,15 +22,14 @@ int main()
 {
     
     // BigDecimalInt o3("65");
-    string s1 = "500", s2 = "450";
-    BigReal o1("+50.5"), o2("-53.5");
+    string s1 = "40", s2 = "70";
+    BigReal o1("50.0"), o2("-52.0");
     // BigReal o5(o3), o4("55.00");
-    cout<<subtraction(s1,s2)<<endl;
     // cout<<"\no5: "<<o5.returnNumber()<<endl;
     // cout<<"o5 decPointPos: "<<o5.getDecPointPos()<<endl; //65.00
-    
+    // cout<<substraction(s1, s2)<<endl;
     // cout<<o1.GetSign();//<<" "<<o2<<endl;
-    cout<<"\n 50.5 + (-53.5) = ";
+    cout<<"\n 50.0 + (-52.0) = ";
     cout<< o1 + o2<<endl;
     //cout<<o1<<" "<<o2;
 
