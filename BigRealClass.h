@@ -74,6 +74,7 @@ public:
     bool operator == (BigReal anotherReal);
     bool operator >  (BigReal anotherReal);
     bool operator <  (BigReal anotherReal);
+
 };
 
 #endif
