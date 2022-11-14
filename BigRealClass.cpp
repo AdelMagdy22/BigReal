@@ -168,6 +168,7 @@ bool  BigReal:: operator > (BigReal anotherReal)
     {
         return b>a;
     }
+    return 0;
 }
 
 bool  BigReal:: operator < (BigReal anotherReal)
@@ -191,6 +192,7 @@ bool  BigReal:: operator < (BigReal anotherReal)
     {
         return b<a;
     }
+    return 0;
 }
 
 void BigReal:: AddZeros(BigReal &num1) 
@@ -255,7 +257,6 @@ BigReal BigReal:: operator +(BigReal& other)
     }
     else if ( (sign1== '+' && sign2 == '-' ) || (sign1 == '-' && sign2 == '+' ) )
     {
-        r = subtraction(returnNumber(), other.returnNumber());
         if(n1 > n2)
         {
             res.setSign(sign1);
@@ -269,8 +270,11 @@ BigReal BigReal:: operator +(BigReal& other)
             res.assNumber("0.0");
             return res;
         }
+        r = subtraction(returnNumber(), other.returnNumber());
+        cout<<"r: "<<r<<endl;
     }
     res.wholeNum.setNumber(r);
+    cout<<"number: "<<res.returnNumber()<<endl;
     long long resDecPointPos;
     resDecPointPos = getDecPointPos() + (res.GetSize() - GetSize());
     res.setDecPointPos(resDecPointPos);
