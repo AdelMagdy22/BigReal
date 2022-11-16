@@ -52,4 +52,4 @@ string addition(string num1,string num2);
 string subtraction(string stt1, string stt2);
 int getMax(string str1, string str2);
 
-#endif //BIGDECIMALINT_BIGDECIMALINTCLASS_H
+#endif
