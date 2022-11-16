@@ -51,9 +51,10 @@ void BigReal :: assNumber(string num)
 
 BigReal :: BigReal(BigDecimalInt other)
 {
-    wholeNum = other.getNumber();
     decPointPos = other.getNumber().length();
-}
+    string str = other.getNumber() + ".00";
+    assNumber(str);
+} 
 
 BigReal :: BigReal(const BigReal& other) // copy constructor
 {
@@ -260,21 +261,60 @@ BigReal BigReal:: operator +(BigReal& other)
         if(n1 > n2)
         {
             res.setSign(sign1);
+            r = subtraction(returnNumber(), other.returnNumber());
         }
         else if (n2 > n1)
         {
             res.setSign(sign2);
+            r = subtraction(other.returnNumber(), returnNumber());
         }
         else if (n1 == n2)
         {
             res.assNumber("0.0");
             return res;
         }
-        r = subtraction(returnNumber(), other.returnNumber());
-        cout<<"r: "<<r<<endl;
     }
     res.wholeNum.setNumber(r);
-    cout<<"number: "<<res.returnNumber()<<endl;
+    long long resDecPointPos;
+    resDecPointPos = getDecPointPos() + (res.GetSize() - GetSize());
+    res.setDecPointPos(resDecPointPos);
+    return res;
+}
+
+BigReal BigReal :: operator - (BigReal& other)
+{
+    AddZeros(other);
+    string n1 = returnNumber(), n2 = other.returnNumber();
+    char sign1 = GetSign() , sign2 = other.GetSign();
+    BigReal res;
+    string r = "";
+    if((sign1 == '+' && sign2 == '+') || ( sign1 == '-' && sign2 == '-') )
+    {
+        if(n1 > n2)
+        {
+            res.setSign(sign1);
+            r = subtraction(returnNumber(), other.returnNumber());
+        }
+        else if (n2 > n1)
+        {
+            // if(sign2 == '-') res.setSign('+');
+            // else res.setSign('-');
+            (sign2 == '-')? res.setSign('+'):res.setSign('-');
+            r = subtraction(other.returnNumber(), returnNumber());
+        }
+        else if (n1 == n2)
+        {
+            res.assNumber("0.0");
+            return res;
+        }
+    }
+        
+    else if ( (sign1== '+' && sign2 == '-' ) || (sign1 == '-' && sign2 == '+' ) )
+    {
+        res.setSign(sign1);
+        r = addition(returnNumber(), other.returnNumber());
+    }
+    res.wholeNum.setNumber(r);
     long long resDecPointPos;
     resDecPointPos = getDecPointPos() + (res.GetSize() - GetSize());
     res.setDecPointPos(resDecPointPos);
