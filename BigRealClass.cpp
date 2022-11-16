@@ -71,6 +71,7 @@ BigReal :: BigReal(BigReal&& other)
     other.assNumber("0.00");
 }
 
+
 BigReal& BigReal :: operator = (BigReal& other)
 {
     // cout<<'\n'<<"assingment operator";
@@ -95,6 +96,8 @@ BigReal& BigReal:: operator = (BigReal&& other)
 
     return *this;
 }
+
+// return the size of number without decimal point
 int BigReal :: GetSize()
 {
    string a=wholeNum.getNumber();
@@ -108,12 +111,14 @@ int BigReal :: GetSize()
     
 }
 
+// return the sign of number + or -
 char BigReal :: GetSign()
 {
     return SignofWholeNum;
    
 }
 
+// print number by number and decimal point
 ostream &operator << (ostream &out, BigReal num)
 {
     string w = num.wholeNum.getNumber();
@@ -129,6 +134,7 @@ ostream &operator << (ostream &out, BigReal num)
     return out;
 }
 
+//it take the input in string then put it in function assnumber
 istream &operator >>(istream & in, BigReal&  num)
 {
     string s;
@@ -138,6 +144,8 @@ istream &operator >>(istream & in, BigReal&  num)
     return in ;
 }
 
+
+//check if the number before operator"==" equale the number after it
 bool BigReal:: operator == (BigReal anotherReal)
 {
     AddZeros(anotherReal);
@@ -147,7 +155,8 @@ bool BigReal:: operator == (BigReal anotherReal)
     return false;
 
 }
-
+ 
+//check if the number before operator">" greater than the number after it
 bool  BigReal:: operator > (BigReal anotherReal)
 {
     AddZeros(anotherReal);
@@ -171,7 +180,7 @@ bool  BigReal:: operator > (BigReal anotherReal)
     }
     return 0;
 }
-
+//check if the number before operator"<" smaller than the number after it
 bool  BigReal:: operator < (BigReal anotherReal)
 {
     AddZeros(anotherReal);
@@ -195,7 +204,7 @@ bool  BigReal:: operator < (BigReal anotherReal)
     }
     return 0;
 }
-
+// function adds the zeros defore and after the number to equale it by the second number 
 void BigReal:: AddZeros(BigReal &num1) 
 {   
     int afDecPos1, afDecPos, beDecPos1, beDecPos;
@@ -243,7 +252,7 @@ void BigReal:: AddZeros(BigReal &num1)
     num1.wholeNum.setNumber(cmp1);
     
 }
-
+// add the number 
 BigReal BigReal:: operator +(BigReal& other)
 {
     AddZeros(other);
@@ -251,12 +260,12 @@ BigReal BigReal:: operator +(BigReal& other)
     char sign1 = GetSign() , sign2 = other.GetSign();
     BigReal res;
     string r = "";
-    if((sign1 == '+' && sign2 == '+') || ( sign1 == '-' && sign2 == '-') )
+    if((sign1 == '+' && sign2 == '+') || ( sign1 == '-' && sign2 == '-') )//check if the signs are the same
     {
         res.setSign(sign1);
         r = addition(returnNumber(), other.returnNumber());
     }
-    else if ( (sign1== '+' && sign2 == '-' ) || (sign1 == '-' && sign2 == '+' ) )
+    else if ( (sign1== '+' && sign2 == '-' ) || (sign1 == '-' && sign2 == '+' ) )//check if the signs are diffrent
     {
         if(n1 > n2)
         {
@@ -281,6 +290,7 @@ BigReal BigReal:: operator +(BigReal& other)
     return res;
 }
 
+//subtruction the numbers
 BigReal BigReal :: operator - (BigReal& other)
 {
     AddZeros(other);
@@ -288,7 +298,7 @@ BigReal BigReal :: operator - (BigReal& other)
     char sign1 = GetSign() , sign2 = other.GetSign();
     BigReal res;
     string r = "";
-    if((sign1 == '+' && sign2 == '+') || ( sign1 == '-' && sign2 == '-') )
+    if((sign1 == '+' && sign2 == '+') || ( sign1 == '-' && sign2 == '-') )//check if the signs are the same
     {
         if(n1 > n2)
         {
@@ -309,7 +319,7 @@ BigReal BigReal :: operator - (BigReal& other)
         }
     }
         
-    else if ( (sign1== '+' && sign2 == '-' ) || (sign1 == '-' && sign2 == '+' ) )
+    else if ( (sign1== '+' && sign2 == '-' ) || (sign1 == '-' && sign2 == '+' ) )//check if the signs are diffrent
     {
         res.setSign(sign1);
         r = addition(returnNumber(), other.returnNumber());
