@@ -20,68 +20,52 @@ using namespace std;
 
 int main()
 {
-    
-    // BigDecimalInt o3("65");
+
+    BigDecimalInt o3("65");
     string s1 = "40", s2 = "70";
-    BigReal o1("50.0"), o2("-52.0");
-    // BigReal o5(o3), o4("55.00");
-    // cout<<"\no5: "<<o5.returnNumber()<<endl;
-    // cout<<"o5 decPointPos: "<<o5.getDecPointPos()<<endl; //65.00
-    // cout<<substraction(s1, s2)<<endl;
-    // cout<<o1.GetSign();//<<" "<<o2<<endl;
-    cout<<"\n 50.0 + (-52.0) = ";
-    cout<< o1 + o2<<endl;
-    //cout<<o1<<" "<<o2;
-
-/*    string re = addition(o1.returnNumber(),o2.returnNumber());
-
-    for (long long i = 0; i < re.length(); i++)
-    {
-        long resDecPointPos;
-        resDecPointPos = max(o1.getDecPointPos(), o2.getDecPointPos()) + (re.length() - max(o1.returnNumber().length(), o2.returnNumber().length() ));
-        if (i == resDecPointPos)
-        {
-            cout<<'.';
-            cout<<re[i];
-        }
-        else cout<<re[i];
-    }
-    cout<<endl;
+    BigReal o1("-107.50"), o2("23.0");
+    BigReal o5(o3), o4("55.00");
+    cout << "\no5: " << o5 << endl;
+    cout << "o5 decPointPos: " << o5.getDecPointPos() << endl; 
+    cout << o1.GetSign();                                      
+    cout << "\n -4.0 + (-7.0) = " << o1 + o2 << endl;
+    cout << "-4.0 - (-7.0) = " << o1 - o2 << endl;
+    cout << "enter number: ";
+    cin >> o1;
+    cout << "o1: " << o1 << endl;
+    cout << "o4 + o5 = " << o4 + o5<<endl;
 
     BigReal o6(move(o4));
 
-
-
-    cout<<o6.returnNumber()<<" DecPointPos: "<<o6.getDecPointPos()<<endl;
-    cout<<o4.returnNumber()<<" DecPointPos: "<<o4.getDecPointPos()<<endl;
+    cout << o6 << endl;
+    cout << o4 << endl;
 
     BigReal o7("55.50");
     BigReal o8;
     o8 = move(o7);
-    cout<<'\n'<<o8.returnNumber()<<endl;
+    cout << '\n'<< o8 << endl;
 
     o1 = o8;
-    cout<<'\n'<<"o1: "<<o1.returnNumber()<<endl;
-    cout<<'\n'<<"o7: "<<o7.returnNumber()<<endl;*/
+    cout << '\n'<< "o1: " << o1 << endl;
+    cout << '\n'<< "o7: " << o7 << endl;
 
-    // BigReal oo("522.500");
-    // BigReal ooo("522.50");
-    // cout << "enter the num: ";
-  //  cin >> ooo;
+    BigReal oo("522.500");
+    BigReal ooo("522.50");
+    cout << "enter the num: ";
+    cin >> ooo;
     // cin.ignore();
-    
-//    cout<<'\n'<<"o1: "<<oo.GetSign()<<endl;
-    //cout<<'\n'<<"o1: "<<oo.GetSize()<<endl;
-   // cout<< "ooo: "<<ooo <<endl;
-   // cout<<"oo: ";
-    //cout << oo << endl;
-    // if(oo==ooo){cout<<"yes"<<endl;}
-    // else{cout<<"no"<<endl;}
-    // (oo<ooo)? cout<<"oo>ooo"<<endl:cout<<"";
-    // (ooo>oo)? cout<<"ooo<oo"<<endl:cout<<"";
-    // cout<<"oo>ooo: "<<oo>ooo;
-    // cout<<"oo<ooo: "<< oo<ooo:
-   // ooo.AddZeros(oo);
-    //cout<<" ooo: "<<ooo<<" oo: "<<oo;
-     
+
+    cout << '\n'<< "oo: " << oo.GetSign() << endl;
+    cout << '\n'<< "oo: " << oo.GetSize() << endl;
+    cout << "ooo: " << ooo << endl;
+    cout << "oo: ";
+    cout << oo << endl;
+    (oo == ooo)? cout << "yes" << endl: cout << "no" << endl;
+
+    (oo < ooo) ? cout << "oo<ooo" << endl : cout << "oo>ooo"<<endl;
+    (ooo > oo) ? cout << "ooo>oo" << endl : cout << "ooo<oo"<<endl;
+    // cout << "oo>ooo: " << oo > ooo;
+    // cout << "oo<ooo: " << oo < ooo;
+    ooo.AddZeros(oo);
+    cout << " ooo: " << ooo << " oo: " << oo;
 }
