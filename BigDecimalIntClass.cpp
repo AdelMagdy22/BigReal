@@ -338,7 +338,6 @@ string subtraction(string stt1, string stt2)
     {
         FinalResult += reResult[i];
     }
-    cout << "FinalResult: " << FinalResult << endl;
     return FinalResult;
 }
 // operator + overloading function.
